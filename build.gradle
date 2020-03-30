@@ -14,7 +14,7 @@ intellij {
     plugins 'yaml' // Bundled plugin dependencies
     pluginName 'Qovery'
     updateSinceUntilBuild false
-    version '2018.2.7'
+    version '2018.3'
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8

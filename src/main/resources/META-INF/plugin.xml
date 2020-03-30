@@ -2,6 +2,9 @@
     <id>com.qovery</id>
     <name>Qovery</name>
 
+    <idea-version since-build="183"/>
+
+
     <vendor email="alexis.viscogliosi@outlook.fr" url="http://www.qovery.com">Qovery</vendor>
 
     <description><![CDATA[
