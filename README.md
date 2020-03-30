@@ -1,2 +1,9 @@
-# intellij-qovery-plugin
-Intellij plugin with auto completion
+# Qovery Plugin
+Qovery Plugin makes it easy to edit Qovery yaml specification files inside IntelliJ IDEA. You will soon be able to find it on jetbrains!
+
+## Demo 
+![Demo of the plugin](.github/plugin-demo.gif)
+## Usage
+
+Open a file that end with .qovery.yml :)
+

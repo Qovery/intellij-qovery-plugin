@@ -1,0 +1,22 @@
+<idea-plugin>
+    <id>com.qovery</id>
+    <name>Qovery</name>
+
+    <vendor email="alexis.viscogliosi@outlook.fr" url="http://www.qovery.com">Qovery</vendor>
+
+    <description><![CDATA[
+     <p>A plugin to help you easily edit Qovery specification files.</p><br/>
+
+     <p>Like this plugin? <b>Give it a star</b> at <a href="https://github.com/qovery/intellij-qovery-plugin">GitHub</a> and spread the word!</p>
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.plugins.yaml</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <completion.contributor language="yaml"
+                                implementationClass="com.qovery.intellij.plugin.completion.QoveryCompletionContributor"/>
+        <iconProvider implementation="com.qovery.intellij.plugin.icon.QoveryIconProvider" id="qoveryIconProvider"/>
+    </extensions>
+
+</idea-plugin>
