@@ -4,7 +4,6 @@ plugins {
     id 'org.jetbrains.intellij' version '0.4.17'
 }
 
-
 apply plugin: 'idea'
 apply plugin: 'org.jetbrains.intellij'
 
@@ -15,7 +14,7 @@ intellij {
     plugins 'yaml' // Bundled plugin dependencies
     pluginName 'Qovery'
     updateSinceUntilBuild false
-    version '2018.2'
+    version '2018.2.7'
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -27,9 +26,4 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
-}
-
-// See https://github.com/JetBrains/gradle-intellij-plugin/
-intellij {
-    version '2018.2.7'
 }
