@@ -3,7 +3,10 @@ Qovery Plugin makes it easy to edit Qovery yaml specification files inside Intel
 
 ## Demo 
 ![Demo of the plugin](.github/plugin-demo.gif)
-## Usage
 
+## Usage
 Open a file that end with .qovery.yml :)
+
+## Compatibility
+This plugin is tested in version `2018.2.7` of intellij and `2019.3.4`.
 
