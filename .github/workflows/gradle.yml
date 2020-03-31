@@ -24,3 +24,5 @@ jobs:
       run: chmod +x gradlew
     - name: Build intellij plugin
       run: ./gradlew buildPlugin
+    - name: Publish plugin to intellij
+      run: ./gradlew publishPlugin
