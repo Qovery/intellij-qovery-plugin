@@ -24,6 +24,6 @@ jobs:
     - name: Build intellij plugin
       run: ./gradlew buildPlugin
     - name: Check token
-      run: [ -z "${JETBRAIN_TOKEN}" ] && echo "This variable is not set"
+      run: bash test-jetbrain-token.sh
     - name: Publish plugin to intellij
       run: ./gradlew publishPlugin
