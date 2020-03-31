@@ -25,5 +25,6 @@ jobs:
       run: ./gradlew buildPlugin
     - name: Check token
       run: bash test-jetbrain-token.sh
-    - name: Publish plugin to intellij
-      run: ./gradlew publishPlugin
+      env:
+        JETBRAIN_TOKEN: ${{ secrets.JETBRAIN_TOKEN }}
+
