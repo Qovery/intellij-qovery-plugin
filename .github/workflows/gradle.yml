@@ -11,7 +11,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -24,5 +23,7 @@ jobs:
       run: chmod +x gradlew
     - name: Build intellij plugin
       run: ./gradlew buildPlugin
+    - name: Check token
+      run: [ -z "${JETBRAIN_TOKEN}" ] && echo "This variable is not set"
     - name: Publish plugin to intellij
       run: ./gradlew publishPlugin
