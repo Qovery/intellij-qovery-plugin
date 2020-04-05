@@ -34,7 +34,7 @@ public class QoveryCompletionContributor extends CompletionContributor {
     public void fillCompletionVariants(@NotNull CompletionParameters parameters, @NotNull CompletionResultSet result) {
         final VirtualFile virtualFile = parameters.getOriginalFile().getVirtualFile();
 
-        if (QoveryUtils.isQoveryFile(virtualFile)) {
+        if (QoveryUtils.isQoveryFile(virtualFile.getName())) {
 
             final PsiElement psiElement = parameters.getPosition();
 
