@@ -1,14 +1,13 @@
 package com.qovery.intellij.plugin.util;
 
-import com.intellij.openapi.vfs.VirtualFile;
 import org.apache.commons.io.FilenameUtils;
 
 public class QoveryUtils {
-    public static boolean isQoveryFile(VirtualFile file) {
+    public static boolean isQoveryFile(String filename) {
         return FilenameUtils.isExtension(
-                file.getName(),
+                filename,
                 new String[]{
                         "yaml", "yml"
-                }) && file.getName().endsWith(".qovery.yml");
+                }) && filename.endsWith(".qovery.yml") || filename.endsWith(".qovery.yaml");
     }
 }
