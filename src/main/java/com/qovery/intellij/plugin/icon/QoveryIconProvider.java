@@ -3,6 +3,7 @@ package com.qovery.intellij.plugin.icon;
 import com.intellij.ide.IconProvider;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
+import com.qovery.intellij.plugin.util.QoveryUtils;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
@@ -13,10 +14,9 @@ public class QoveryIconProvider extends IconProvider {
 
     public Icon getIcon(@NotNull PsiElement psiElement, int flags) {
         PsiFile containingFile = psiElement.getContainingFile();
-        if (containingFile != null && containingFile.getName().endsWith(".qovery.yml")) {
+        if (containingFile != null && QoveryUtils.isQoveryFile(containingFile.getName())) {
             return QOVERY_ICON_16;
         }
         return null;
     }
-
 }
