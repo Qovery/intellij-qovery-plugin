@@ -5,7 +5,8 @@ name: Publish plugin
 
 on:
   push:
-    tags: [ * ]
+    tags:
+      - *
 
 jobs:
   build:
