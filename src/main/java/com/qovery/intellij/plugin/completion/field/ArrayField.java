@@ -2,6 +2,9 @@ package com.qovery.intellij.plugin.completion.field;
 
 import org.apache.commons.lang.StringUtils;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class ArrayField extends Field {
 
     public ArrayField(String name, boolean required, String path) {
@@ -15,8 +18,9 @@ public class ArrayField extends Field {
     }
 
     @Override
-    public String getComplete(final int indentation) {
-        final String indentationPadding = StringUtils.repeat(" ", indentation);
-        return indentationPadding + getName() + getPlaceholderSuffix(indentation);
+    protected void fillYamlSnippet(HashMap<String, Object> snippet) {
+        ArrayList<String> s = new ArrayList<>();
+        s.add("");
+        snippet.put(getName(), s);
     }
 }

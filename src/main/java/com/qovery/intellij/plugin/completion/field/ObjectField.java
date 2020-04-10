@@ -1,7 +1,12 @@
 package com.qovery.intellij.plugin.completion.field;
 
 import org.apache.commons.lang.StringUtils;
+import org.jetbrains.yaml.YAMLTextUtil;
+import org.jetbrains.yaml.YAMLUtil;
+import org.yaml.snakeyaml.DumperOptions;
+import org.yaml.snakeyaml.Yaml;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class ObjectField extends Field {
@@ -19,9 +24,13 @@ public class ObjectField extends Field {
     }
 
     @Override
-    public String getComplete(final int indentation) {
-        final String indentationPadding = StringUtils.repeat(" ", indentation);
-        return indentationPadding + getName() + getPlaceholderSuffix(indentation);
+    public void fillYamlSnippet(HashMap<String, Object> snippet) {
+        HashMap<String, Object> childrenMap = new HashMap<>();
+        for (final Field field : children) {
+            field.fillYamlSnippet(childrenMap);
+        }
+
+        snippet.put(getName(), childrenMap);
     }
 
 
@@ -30,17 +39,18 @@ public class ObjectField extends Field {
             return StringUtils.repeat(" ", indentation) + PLACEHOLDER;
         }
 
-        final StringBuilder sb = new StringBuilder();
+        HashMap<String, Object> snippet = new HashMap<>();
 
         for (final Field field : children) {
-            sb.append(field.getComplete(indentation)).append("\n");
+            field.fillYamlSnippet(snippet);
         }
 
-        if (sb.length() > 0) {
-            sb.deleteCharAt(sb.length() - 1);
-        }
 
-        return sb.toString();
+        DumperOptions options = new DumperOptions();
+        options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
+        options.setPrettyFlow(true);
+
+        return YAMLTextUtil.indentText(new Yaml(options).dump(snippet), indentation);
     }
 
     public List<Field> getChildren() {

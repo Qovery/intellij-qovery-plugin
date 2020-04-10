@@ -1,10 +1,7 @@
 package com.qovery.intellij.plugin.completion;
 
 import com.qovery.intellij.plugin.completion.domain.QoverySpec;
-import com.qovery.intellij.plugin.completion.field.ArrayField;
-import com.qovery.intellij.plugin.completion.field.Field;
-import com.qovery.intellij.plugin.completion.field.ObjectField;
-import com.qovery.intellij.plugin.completion.field.StringField;
+import com.qovery.intellij.plugin.completion.field.*;
 import com.qovery.intellij.plugin.completion.value.*;
 
 import java.lang.annotation.*;
@@ -51,12 +48,20 @@ public class Spec {
                 fieldList.add(new StringField(fieldName, isRequired, path));
                 break;
             case "List":
-                fieldList.add(new ArrayField(fieldName, isRequired, path));
                 Optional<ListOf> listOfAnnotation = getAnnotationOpt(field, ListOf.class);
-                if (listOfAnnotation.isPresent()) {
+                if (listOfAnnotation.isPresent() && !listOfAnnotation.get().primitive()) {
+                    List<Field> nextFieldList = new ArrayList<>();
+                    List<Field> children = new ArrayList<>();
                     for (java.lang.reflect.Field typedListField : listOfAnnotation.get().value().getFields()) {
-                        fieldList.addAll(handleField(nextPath, typedListField));
+                        List<Field> fieldsFromNext = handleField(nextPath, typedListField);
+                        children.add(fieldsFromNext.get(0));
+                        nextFieldList.addAll(fieldsFromNext);
                     }
+
+                    fieldList.add(new ArrayObjectField(fieldName, isRequired, path, children));
+                    fieldList.addAll(nextFieldList);
+                } else {
+                    fieldList.add(new ArrayField(fieldName, isRequired, path));
                 }
                 break;
             default:
@@ -150,6 +155,7 @@ public class Spec {
     @Retention(RetentionPolicy.RUNTIME)
     public @interface ListOf {
         Class value();
+        boolean primitive() default false;
     }
 
 
