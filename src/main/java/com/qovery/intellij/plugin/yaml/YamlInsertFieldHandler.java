@@ -25,6 +25,8 @@ import com.qovery.intellij.plugin.completion.field.Field;
 import com.qovery.intellij.plugin.util.StringUtils;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
+
 public class YamlInsertFieldHandler implements InsertHandler<LookupElement> {
 
     private final Field field;
@@ -37,7 +39,6 @@ public class YamlInsertFieldHandler implements InsertHandler<LookupElement> {
     public void handleInsert(@NotNull final InsertionContext context, @NotNull final LookupElement item) {
         if (!StringUtils.nextCharAfterSpacesAndQuotesIsColon(
                 getStringAfterAutoCompletedValue(context))) {
-            System.out.println("indentation: " + getIndentation(context, item));
             final String suffixWithCaret = field.getPlaceholderSuffix(getIndentation(context, item));
             final String suffixWithoutCaret = suffixWithCaret.replace(Field.PLACEHOLDER, "");
             EditorModificationUtil.insertStringAtCaret(

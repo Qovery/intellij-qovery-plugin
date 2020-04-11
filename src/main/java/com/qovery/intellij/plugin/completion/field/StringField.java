@@ -1,6 +1,6 @@
 package com.qovery.intellij.plugin.completion.field;
 
-import org.apache.commons.lang.StringUtils;
+import java.util.HashMap;
 
 public class StringField extends Field {
 
@@ -14,8 +14,7 @@ public class StringField extends Field {
     }
 
     @Override
-    public String getComplete(final int indentation) {
-        final String leftPadding = StringUtils.repeat(" ", indentation);
-        return leftPadding + getName() + ": " + PLACEHOLDER;
+    protected void fillYamlSnippet(HashMap<String, Object> snippet) {
+        snippet.put(getName(), "");
     }
 }

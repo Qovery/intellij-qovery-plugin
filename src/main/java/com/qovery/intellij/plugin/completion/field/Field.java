@@ -1,5 +1,7 @@
 package com.qovery.intellij.plugin.completion.field;
 
+import java.util.HashMap;
+
 public abstract class Field {
     public static final String PLACEHOLDER = "<PH>";
 
@@ -20,7 +22,7 @@ public abstract class Field {
 
     public abstract String getPlaceholderSuffix(final int indentation);
 
-    protected abstract String getComplete(final int indentation);
+    protected abstract void fillYamlSnippet(HashMap<String, Object> snippet);
 
     public boolean isRequired() {
         return required;
