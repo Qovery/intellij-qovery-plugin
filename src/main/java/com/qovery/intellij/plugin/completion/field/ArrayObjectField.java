@@ -20,7 +20,6 @@ public class ArrayObjectField extends Field {
 
     @Override
     public String getPlaceholderSuffix(final int indentation) {
-        System.out.println("indentation: " + indentation);
         return ":\n" + printYamlChildren(indentation + (indentation == 0 ? 2 : 0));
     }
 
@@ -59,8 +58,6 @@ public class ArrayObjectField extends Field {
 
         String beforeIndent = new Yaml(options).dump(objects);
         String afterIndent = YAMLTextUtil.indentText(beforeIndent, indentation);
-        System.out.println("before\n" + beforeIndent);
-        System.out.println("after\n" + afterIndent);
 
         return afterIndent;
     }
