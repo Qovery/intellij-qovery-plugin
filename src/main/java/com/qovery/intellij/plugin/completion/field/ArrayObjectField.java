@@ -20,7 +20,8 @@ public class ArrayObjectField extends Field {
 
     @Override
     public String getPlaceholderSuffix(final int indentation) {
-        return ":\n" + printYamlChildren(indentation + 2);
+        System.out.println("indentation: " + indentation);
+        return ":\n" + printYamlChildren(indentation + (indentation == 0 ? 2 : 0));
     }
 
     @Override
@@ -39,12 +40,11 @@ public class ArrayObjectField extends Field {
 
     private String printYamlChildren(final int indentation) {
         if (children.isEmpty()) {
-            return StringUtils.repeat("- ", indentation) + PLACEHOLDER;
+            return StringUtils.repeat(" ", indentation) + "- " + PLACEHOLDER;
         }
 
         ArrayList<Object> objects = new ArrayList<>();
         HashMap<String, Object> snippetOfArray = new HashMap<>();
-        Yaml yaml = new Yaml();
 
         int i = 0 ;
         for (final Field field : children) {
@@ -57,6 +57,11 @@ public class ArrayObjectField extends Field {
         options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
         options.setPrettyFlow(true);
 
-        return YAMLTextUtil.indentText(new Yaml(options).dump(objects), indentation);
+        String beforeIndent = new Yaml(options).dump(objects);
+        String afterIndent = YAMLTextUtil.indentText(beforeIndent, indentation);
+        System.out.println("before\n" + beforeIndent);
+        System.out.println("after\n" + afterIndent);
+
+        return afterIndent;
     }
 }
