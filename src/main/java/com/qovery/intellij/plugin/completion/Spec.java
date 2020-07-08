@@ -132,6 +132,9 @@ public class Spec {
         getAnnotationOpt(field, ValueFileEndWith.class)
                 .ifPresent(n -> valueSetList.add(new ValueSet(new ContextualFileExtension(n.value()), path)));
 
+        getAnnotationOpt(field, ValueSuffixList.class)
+                .ifPresent(n -> valueSetList.add(new ValueSet(new ContextualSuffix(n.value(), path), path)));
+
         getAnnotationOpt(field, ValueDatabaseVersion.class)
                 .ifPresent(n -> valueSetList.add(new ValueSet(new ContextualDatabaseVersion(), path)));
 
@@ -174,6 +177,12 @@ public class Spec {
     @Retention(RetentionPolicy.RUNTIME)
     public @interface ValueFileEndWith {
         String value();
+    }
+
+    @Target(ElementType.FIELD)
+    @Retention(RetentionPolicy.RUNTIME)
+    public @interface ValueSuffixList {
+        String[] value();
     }
 
     @Target(ElementType.FIELD)
