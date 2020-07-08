@@ -17,7 +17,6 @@ public class QoverySpec {
     @Spec.ListOf(RouterSpec.class)
     public List<RouterSpec> routers;
 
-//    Currently not in the doc of Qovery
-//    @Spec.ListOf(BrokerSpec.class)
-//    public List<BrokerSpec> brokers;
+    @Spec.ListOf(StorageSpec.class)
+    public List<StorageSpec> storage;
 }
