@@ -43,8 +43,6 @@ public class QoveryCompletionContributor extends CompletionContributor {
                     this.yamlTraversal
             );
 
-            completionHelper.getValueOfKeyFromParentMapping("type").ifPresent(System.out::println);
-
             fillFieldsCompletion(completionHelper, result, spec);
             fillValuesCompletion(completionHelper, result, spec);
 
