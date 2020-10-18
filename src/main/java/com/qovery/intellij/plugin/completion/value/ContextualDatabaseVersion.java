@@ -8,8 +8,9 @@ import java.util.Set;
 
 public class ContextualDatabaseVersion implements ContextualValueSet {
 
-    private final String[] POSTGRES_VERSION = {"9.4", "9.5", "9.6", "10", "11"};
+    private final String[] POSTGRES_VERSION = {"9", "10", "11", "12"};
     private final String[] MYSQL_VERSION = {"5.5", "5.6", "5.7", "8.0"};
+    private final String[] MONGO_VERSION = {"3.6", "4.0", "4.2", "4.4"};
 
     @Override
     public Set<String> offers(QoveryCompletionHelper completionHelper) {
@@ -21,7 +22,7 @@ public class ContextualDatabaseVersion implements ContextualValueSet {
                 case "mysql":
                     return SetUtil.of(MYSQL_VERSION);
                 case "mongodb":
-                    return SetUtil.of();
+                    return SetUtil.of(MONGO_VERSION);
             }
         }
         return SetUtil.of();
