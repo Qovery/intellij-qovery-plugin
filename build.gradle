@@ -1,14 +1,14 @@
 plugins {
     id 'pmd'
     id 'java'
-    id 'org.jetbrains.intellij' version '0.4.17'
+    id 'org.jetbrains.intellij' version '0.5.0'
 }
 
 apply plugin: 'idea'
 apply plugin: 'org.jetbrains.intellij'
 
 group 'com.qovery'
-version '0.1.4'
+version '0.1.5'
 
 intellij {
     plugins 'yaml' // Bundled plugin dependencies
