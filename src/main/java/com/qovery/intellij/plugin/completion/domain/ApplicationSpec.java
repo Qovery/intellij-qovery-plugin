@@ -40,4 +40,9 @@ public class ApplicationSpec {
 
     @Spec.ValueFileEndWith("Dockerfile")
     public String dockerfile;
+
+    public String cpu;
+
+    @Spec.ValueSuffixList({"GB", "MB"})
+    public String ram;
 }
